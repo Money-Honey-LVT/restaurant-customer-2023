@@ -27,6 +27,7 @@
     "dns": "^0.2.2",
     "embla-carousel-react": "^7.1.0",
     "firebase": "^9.19.1",
+    "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
     "mantine-datatable": "^2.2.9",
     "pnpm": "^8.3.1",
@@ -43,6 +44,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.4.2",
     "reselect": "^4.1.7",
+    "uuid": "^9.0.0",
     "vite-plugin-svgr": "^2.4.0"
   },
   "devDependencies": {
@@ -52,6 +54,7 @@
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@types/redux-logger": "^3.0.9",
+    "@types/uuid": "^9.0.1",
     "@vitejs/plugin-react": "^3.1.0",
     "prettier": "^2.8.7",
     "typescript": "^4.9.3",
