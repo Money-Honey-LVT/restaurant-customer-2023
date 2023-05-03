@@ -1,5 +1,4 @@
 import {
-  Burger,
   Button,
   Card,
   Center,
@@ -10,28 +9,25 @@ import {
   Header,
   Image,
   MultiSelect,
-  Paper,
   ScrollArea,
   Stack,
+  Text,
   TextInput,
   Title,
-  Transition,
   createStyles,
   rem,
 } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
 import { isNotEmpty, useForm } from '@mantine/form';
-import logo from '../../assets/img/logo.png';
-import links from './links.json';
 import { useEffect, useMemo } from 'react';
-import { foodActions } from '../../reducers/food/food.action';
-import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { useSelector } from 'react-redux';
+import logo from '../../assets/img/logo.png';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { foodActions } from '../../reducers/food/food.action';
+import { tableActions } from '../../reducers/table/table.action';
 import { RootState } from '../../redux/reducer';
-import FoodCard from './FoodCard/FoodCard';
 import { FoodStatus } from '../../types/models/food';
 import { TableStatus } from '../../types/models/table';
-import { tableActions } from '../../reducers/table/table.action';
+import FoodCard from './FoodCard/FoodCard';
 
 const HEADER_HEIGHT = rem(60);
 
@@ -105,8 +101,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 function AppLayout() {
-  const [opened, { toggle, close }] = useDisclosure(false);
-  const { classes, cx } = useStyles();
+  const { classes } = useStyles();
 
   const { foods } = useSelector((state: RootState) => state.food);
   const { tables } = useSelector((state: RootState) => state.table);
@@ -141,37 +136,14 @@ function AppLayout() {
     },
   });
 
-  const items = links.links.map((link) => (
-    <a
-      key={link.label}
-      className={cx(classes.link)}
-      onClick={(event) => {
-        event.preventDefault();
-        close();
-      }}
-    >
-      {link.label}
-    </a>
-  ));
-
   return (
     <>
       <Header height={HEADER_HEIGHT} mb={40} className={classes.root}>
         <Container className={classes.header}>
           <Image src={logo} height={52.07} width={160} />
           <Group spacing={5} className={classes.links}>
-            {items}
+            <Text fz="sm">Trang đặt bàn & gọi món</Text>
           </Group>
-
-          <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
-
-          <Transition transition="pop-top-right" duration={200} mounted={opened}>
-            {(styles) => (
-              <Paper className={classes.dropdown} withBorder style={styles}>
-                {items}
-              </Paper>
-            )}
-          </Transition>
         </Container>
       </Header>
 
@@ -254,7 +226,7 @@ function AppLayout() {
               </Grid.Col>
             </Grid>
             <Group mt="sm" position="right">
-              <Button variant="light" color="orange.9" onClick={close}>
+              <Button variant="light" color="orange.9">
                 Huỷ bỏ
               </Button>
               <Button type="submit" color="orange.9">
