@@ -16,6 +16,9 @@ dependencies:
   '@mantine/dropzone':
     specifier: ^6.0.5
     version: 6.0.5(@mantine/core@6.0.5)(@mantine/hooks@6.0.5)(react-dom@18.2.0)(react@18.2.0)
+  '@mantine/ds':
+    specifier: ^6.0.5
+    version: 6.0.5(@mantine/core@6.0.5)(@mantine/hooks@6.0.5)(@mantine/prism@6.0.5)(@tabler/icons-react@2.12.0)(react-dom@18.2.0)(react@18.2.0)
   '@mantine/form':
     specifier: ^6.0.5
     version: 6.0.5(react@18.2.0)
@@ -1246,6 +1249,25 @@ packages:
       react-dropzone: 14.2.3(react@18.2.0)
     dev: false
 
+  /@mantine/ds@6.0.5(@mantine/core@6.0.5)(@mantine/hooks@6.0.5)(@mantine/prism@6.0.5)(@tabler/icons-react@2.12.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-LEXAlIgLtWxnHaXzlCtCux1d2pxHlTA5NfrxS8sJ7iUpXMtQ4+uj4CiFm2wwJ2zrPj1HtAtTihppCpRZKSAtMw==}
+    peerDependencies:
+      '@mantine/core': 6.0.5
+      '@mantine/hooks': 6.0.5
+      '@mantine/prism': 6.0.5
+      '@tabler/icons-react': '*'
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      '@mantine/core': 6.0.5(@emotion/react@11.10.6)(@mantine/hooks@6.0.5)(@types/react@18.0.28)(react-dom@18.2.0)(react@18.2.0)
+      '@mantine/hooks': 6.0.5(react@18.2.0)
+      '@mantine/prism': 6.0.5(@mantine/core@6.0.5)(@mantine/hooks@6.0.5)(react-dom@18.2.0)(react@18.2.0)
+      '@mantine/utils': 6.0.5(react@18.2.0)
+      '@tabler/icons-react': 2.12.0(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
   /@mantine/form@6.0.5(react@18.2.0):
     resolution: {integrity: sha512-7YclnSzYCCVZQKT4g9Hta6cvlVf20RUe5L6x1s570nfJFXk1j9wbrPIJ5pEUdXwTnMGfcZ+n0OmcCxUnf8lpPA==}
     peerDependencies:
@@ -1293,6 +1315,22 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-transition-group: 4.4.2(react-dom@18.2.0)(react@18.2.0)
+    dev: false
+
+  /@mantine/prism@6.0.5(@mantine/core@6.0.5)(@mantine/hooks@6.0.5)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-pC0nygGl0h/LaltWJjhGq+UTSHOboZwmkZruvaH/Dyjz0QjreWZ3zgzWzNdP9LfMyRT8fIkAG7xohcy5XTSpWg==}
+    peerDependencies:
+      '@mantine/core': 6.0.5
+      '@mantine/hooks': 6.0.5
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      '@mantine/core': 6.0.5(@emotion/react@11.10.6)(@mantine/hooks@6.0.5)(@types/react@18.0.28)(react-dom@18.2.0)(react@18.2.0)
+      '@mantine/hooks': 6.0.5(react@18.2.0)
+      '@mantine/utils': 6.0.5(react@18.2.0)
+      prism-react-renderer: 1.3.5(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /@mantine/styles@6.0.5(@emotion/react@11.10.6)(react-dom@18.2.0)(react@18.2.0):
@@ -2894,6 +2932,14 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
+
+  /prism-react-renderer@1.3.5(react@18.2.0):
+    resolution: {integrity: sha512-IJ+MSwBWKG+SM3b2SUfdrhC+gu01QkV2KmRQgREThBfSQRoufqRfxfHUxpG1WcaFjP+kojcFyO9Qqtpgt3qLCg==}
+    peerDependencies:
+      react: '>=0.14.9'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
