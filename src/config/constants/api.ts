@@ -32,7 +32,7 @@ export const API_URLS = {
     createTable: () => ({
       endPoint: `${Schemas.TablesSchema}`,
       method: 'POST',
-      headers: HEADERS.authHeader(),
+      headers: HEADERS.header(),
     }),
     getAllTables: () => ({
       endPoint: `${Schemas.TablesSchema}`,

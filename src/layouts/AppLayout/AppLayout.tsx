@@ -18,7 +18,7 @@ import {
   rem,
 } from '@mantine/core';
 import { isNotEmpty, useForm } from '@mantine/form';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import logo from '../../assets/img/logo.png';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
@@ -28,6 +28,8 @@ import { RootState } from '../../redux/reducer';
 import { FoodStatus } from '../../types/models/food';
 import { TableStatus } from '../../types/models/table';
 import FoodCard from './FoodCard/FoodCard';
+import { orderActions } from '../../reducers/order/order.action';
+import { Order } from '../../types/models/order';
 
 const HEADER_HEIGHT = rem(60);
 
@@ -116,6 +118,8 @@ function AppLayout() {
 
   const dispatch = useAppDispatch();
 
+  const [orderedFoods, setOrderedFoods] = useState<{ id: number; quantity: number }[]>([]);
+
   useEffect(() => {
     dispatch(foodActions.getAllFoods());
     dispatch(tableActions.getAllTables());
@@ -130,7 +134,7 @@ function AppLayout() {
     },
     validate: {
       name: isNotEmpty('Tên khách hàng không thể bỏ trống!'),
-      phone: isNotEmpty('Số điệnthoại khách hàng không thể bỏ trống!'),
+      phone: isNotEmpty('Số điện thoại khách hàng không thể bỏ trống!'),
       address: isNotEmpty('Địa chỉ khách hàng không thể bỏ trống!'),
       tableIDS: isNotEmpty('Bạn chưa chọn bàn cho khách hàng!'),
     },
@@ -149,9 +153,34 @@ function AppLayout() {
 
       <Container>
         <form
-          id="form-add-modal"
+          id="form-add"
           onSubmit={form.onSubmit((values) => {
-            console.log(values);
+            const { address, name, phone, tableIDS } = values;
+            const ids = tableIDS.map((id) => Number(id));
+            dispatch(
+              orderActions.addOrder(
+                {
+                  customer: {
+                    address,
+                    name,
+                    phone,
+                  },
+                  tableIDS: ids,
+                },
+                {
+                  onSuccess: (res: Order) => {
+                    dispatch(
+                      orderActions.orderFood(
+                        { orderId: res.id, foodOrdered: orderedFoods },
+                        {
+                          onSuccess: () => setOrderedFoods([]),
+                        }
+                      )
+                    );
+                  },
+                }
+              )
+            );
           })}
         >
           <Flex direction="column" gap="sm">
@@ -159,7 +188,7 @@ function AppLayout() {
               <Grid.Col span={5}>
                 <Center>
                   <Title order={3} mb="sm">
-                    Thông tin khách hàng
+                    Thông Tin Khách Hàng
                   </Title>
                 </Center>
                 <Card withBorder>
@@ -202,7 +231,7 @@ function AppLayout() {
               <Grid.Col span={7}>
                 <Center>
                   <Title order={3} mb="sm">
-                    Gọi món
+                    Gọi Món
                   </Title>
                 </Center>
                 <Card withBorder>
@@ -213,8 +242,8 @@ function AppLayout() {
                           .filter((food) => food.status === FoodStatus.active)
                           .map((item, index) => (
                             <FoodCard
-                              setOrderedFoods={() => {}}
-                              orderedFoods={[]}
+                              setOrderedFoods={setOrderedFoods}
+                              orderedFoods={orderedFoods}
                               key={`food-card-${index}`}
                               item={item}
                             />
@@ -226,7 +255,7 @@ function AppLayout() {
               </Grid.Col>
             </Grid>
             <Group mt="sm" position="right">
-              <Button variant="light" color="orange.9">
+              <Button variant="light" color="orange.9" onClick={() => setOrderedFoods([])}>
                 Huỷ bỏ
               </Button>
               <Button type="submit" color="orange.9">

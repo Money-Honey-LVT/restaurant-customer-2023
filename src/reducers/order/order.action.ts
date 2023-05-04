@@ -22,7 +22,7 @@ const addOrder =
     if (!error && response?.status === 200) {
       dispatch({ type: OrderActionType.ADD_ORDER_SUCCESS });
       renderNotification('Thông báo', 'Thêm thành công!', notiType.SUCCESS);
-      cb?.onSuccess?.();
+      cb?.onSuccess?.(response.data);
     } else {
       dispatch({ type: OrderActionType.ADD_ORDER_FAILURE });
       renderNotification('Thông báo', error.response.data.devMsg, notiType.ERROR);
