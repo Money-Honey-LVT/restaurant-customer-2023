@@ -173,7 +173,10 @@ function AppLayout() {
                       orderActions.orderFood(
                         { orderId: res.id, foodOrdered: orderedFoods },
                         {
-                          onSuccess: () => setOrderedFoods([]),
+                          onSuccess: () => {
+                            setOrderedFoods([]);
+                            dispatch(tableActions.getAllTables());
+                          },
                         }
                       )
                     );
