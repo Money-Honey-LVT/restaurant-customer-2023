@@ -176,6 +176,7 @@ function AppLayout() {
                           onSuccess: () => {
                             setOrderedFoods([]);
                             dispatch(tableActions.getAllTables());
+                            form.reset();
                           },
                         }
                       )
