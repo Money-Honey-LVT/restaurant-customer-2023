@@ -112,7 +112,7 @@ function AppLayout() {
     () =>
       tables
         .filter((table) => table.status === TableStatus.FREE)
-        .map((table) => ({ value: table.id.toString(), label: table.name })),
+        .map((table) => ({ value: table.id.toString(), label: `${table.name} (bàn ${table.capacity} người)` })),
     [tables]
   );
 
